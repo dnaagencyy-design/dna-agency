@@ -1,43 +1,271 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>DNA Agency | Different. Not Average.</title> <!-- Tailwind CDN --> <script src="https://cdn.tailwindcss.com"></script> <style> body { background: black; } </style> </head> <body class="text-white font-sans overflow-x-hidden"> <!-- HERO --> <section class="relative text-center py-32 px-6 bg-gradient-to-b from-black via-gray-950 to-black"> <div class="absolute inset-0 flex items-center justify-center opacity-20 animate-spin-slow"> <div class="w-[700px] h-[700px] border-4 border-purple-500 rounded-full"></div> </div><h1 class="text-6xl md:text-8xl font-bold tracking-tight relative z-10">
-  DNA Agency
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNA Agency | Different. Not Average.</title>
 
-<p class="text-2xl mt-4 text-purple-400 font-semibold relative z-10">
-  Different. Not Average.
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body {
+  background: radial-gradient(circle at top, #111 0%, #000 60%);
+  scroll-behavior: smooth;
+}
+
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.glow {
+  background: linear-gradient(90deg,#7c3aed,#9333ea);
+  box-shadow: 0 0 25px rgba(147,51,234,.7);
+  transition: .3s;
+}
+.glow:hover {
+  box-shadow: 0 0 50px rgba(147,51,234,1);
+  transform: translateY(-4px);
+}
+
+.fade {
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s ease;
+}
+.fade.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+#particles {
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+</style>
+</head>
+
+<body class="text-white font-sans overflow-x-hidden">
+
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav class="fixed w-full bg-black/70 backdrop-blur-lg border-b border-gray-800 z-50">
+<div class="max-w-7xl mx-auto flex justify-between items-center p-6">
+<div class="text-2xl font-bold text-purple-400">DNA Agency</div>
+<div class="hidden md:flex gap-10 text-gray-300">
+<a href="#results">Results</a>
+<a href="#pricing">Packages</a>
+<a href="#contact">Contact</a>
+</div>
+<button onclick="openModal()" class="glow px-6 py-3 rounded-xl font-semibold">
+Book Call
+</button>
+</div>
+</nav>
+
+<div class="h-24"></div>
+
+<!-- HERO -->
+<section class="text-center py-32 px-6 fade">
+<h1 class="text-6xl md:text-8xl font-bold">DNA Agency</h1>
+<p class="text-2xl mt-6 text-purple-400 font-semibold">
+Different. Not Average.
 </p>
 
-<p class="mt-10 text-2xl font-semibold relative z-10">
-  268 out of 268 businesses say our agency helped them bring in more leads.
+<p class="mt-12 text-2xl max-w-3xl mx-auto font-semibold">
+We engineer AI communication systems that capture 100% of your inbound opportunities.
 </p>
 
-<div class="mt-6 text-yellow-400 text-xl">
-  ★★★★★ <span class="text-white ml-3">4.8 Overall Rating</span>
+<div class="mt-8 text-yellow-400 text-xl">
+★★★★★ <span class="text-white ml-3">4.8 Overall Rating</span>
 </div>
 
-<div class="mt-10 text-xl text-green-400 font-semibold">
-  Client Revenue Generated:
-  $<span id="revenue">1,847,326</span>+
-</div></section> <!-- USA & CANADA --> <section class="py-24 px-6 text-center"> <h2 class="text-5xl font-bold mb-8">Serving the USA & Canada</h2> <p class="text-gray-400 text-xl max-w-4xl mx-auto"> We engineer AI communication systems that dominate your market across North America. </p> </section> <!-- TESTIMONIAL ROTATOR --> <section class="py-24 px-6 bg-gray-950 text-center"> <h2 class="text-5xl font-bold mb-12">Client Results</h2> <p id="testimonial" class="text-xl text-gray-300 max-w-3xl mx-auto transition-opacity duration-500"> This business stopped missing 72% of their calls and landed 23 new clients. ★★★★★ </p> </section> <!-- PACKAGES --> <section class="py-24 px-6 text-center"> <h2 class="text-5xl font-bold mb-16">Outcome Packages</h2><div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-  <div class="bg-gray-900 p-10 rounded-2xl border border-gray-800">
-    <h3 class="text-3xl font-bold mb-4">Silver</h3>
-    <p class="text-purple-400 font-semibold">Never miss another qualified lead.</p>
-  </div>
+<div class="mt-10 text-green-400 text-xl font-semibold">
+Client Revenue Generated: $<span id="revenue">1,847,326</span>+
+</div>
 
-  <div class="bg-gray-900 p-10 rounded-2xl border border-gray-800">
-    <h3 class="text-3xl font-bold mb-4">Gold</h3>
-    <p class="text-purple-400 font-semibold">Increase booked appointments 30–60%.</p>
-  </div>
+<div class="mt-4 text-blue-400 text-lg">
+Live Calls Captured Today: <span id="calls">91</span>
+</div>
 
-  <div class="bg-gray-900 p-10 rounded-2xl border border-gray-800">
-    <h3 class="text-3xl font-bold mb-4">Platinum</h3>
-    <p class="text-purple-400 font-semibold">Predictable revenue engine.</p>
-  </div>
-</div></section> <!-- CONTACT --> <section class="py-24 px-6 bg-gray-950 text-center"> <h2 class="text-5xl font-bold mb-12">Let’s Rebuild Your Revenue DNA</h2><div class="flex flex-col md:flex-row justify-center gap-6">
-  <a href="sms:8144908377" class="bg-purple-600 px-10 py-6 rounded-2xl text-lg font-semibold hover:bg-purple-700 transition">
-    Text: 814-490-8377
-  </a>
+<div class="mt-12">
+<button onclick="openModal()" class="glow px-10 py-5 rounded-2xl text-xl font-semibold">
+Get My Growth Plan
+</button>
+</div>
 
-  <a href="mailto:DNA.Agencyy@gmail.com" class="border border-purple-500 px-10 py-6 rounded-2xl text-lg font-semibold hover:bg-purple-500 hover:text-black transition">
-    Email: DNA.Agencyy@gmail.com
-  </a>
-</div></section> <footer class="py-10 text-center text-gray-600 text-sm border-t border-gray-800"> © 2026 DNA Agency — Different. Not Average. </footer> <!-- ANIMATIONS --> <script> // Revenue counter let revenue = 1847326; const revenueEl = document.getElementById("revenue"); setInterval(() => { revenue += Math.floor(Math.random() * 500); revenueEl.textContent = revenue.toLocaleString(); }, 2000); // Testimonials rotator const testimonials = [ "This business stopped missing 72% of their calls and landed 23 new clients. ★★★★★", "Captured 41 missed calls per month and generated $38,000 in new jobs. ★★★★★", "Increased appointment bookings by 56% in 60 days. ★★★★★", "Signed 11 new retainers after recovering lost consultations. ★★★★★" ]; let index = 0; const testimonialEl = document.getElementById("testimonial"); setInterval(() => { index = (index + 1) % testimonials.length; testimonialEl.style.opacity = 0; setTimeout(() => { testimonialEl.textContent = testimonials[index]; testimonialEl.style.opacity = 1; }, 300); }, 3000); </script> <style> .animate-spin-slow { animation: spin 30s linear infinite; } @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } </style> </body> </html>
+<div class="mt-6 text-red-400">
+Limited onboarding slots left this month:
+<span id="timer">14:59</span>
+</div>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<section class="py-10 text-center text-gray-400 border-y border-gray-800">
+Trusted by 268 businesses across the USA & Canada
+</section>
+
+<!-- RESULTS -->
+<section id="results" class="py-24 px-6 text-center bg-gray-950 fade">
+<h2 class="text-5xl font-bold mb-16">Client Wins</h2>
+<div id="testimonial" class="glass p-10 rounded-3xl max-w-3xl mx-auto text-xl">
+Captured 41 missed calls per month and generated $38,000 in new jobs. ★★★★★
+</div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="py-24 px-6 text-center fade">
+<h2 class="text-5xl font-bold mb-12">Outcome Packages</h2>
+
+<div class="mb-10">
+<button onclick="togglePricing()" class="glass px-6 py-3 rounded-xl">
+Toggle Monthly / Annual (Save 20%)
+</button>
+</div>
+
+<div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+<div class="glass p-10 rounded-3xl">
+<h3 class="text-3xl font-bold mb-4">Silver</h3>
+<p id="silverPrice" class="text-purple-400 text-xl mb-6">$997/mo</p>
+<button onclick="openModal()" class="glow w-full py-4 rounded-xl">
+Apply
+</button>
+</div>
+
+<div class="glass p-10 rounded-3xl">
+<h3 class="text-3xl font-bold mb-4">Gold</h3>
+<p id="goldPrice" class="text-purple-400 text-xl mb-6">$1,997/mo</p>
+<button onclick="openModal()" class="glow w-full py-4 rounded-xl">
+Apply
+</button>
+</div>
+
+<div class="glass p-10 rounded-3xl">
+<h3 class="text-3xl font-bold mb-4">Platinum</h3>
+<p id="platinumPrice" class="text-purple-400 text-xl mb-6">$3,497/mo</p>
+<button onclick="openModal()" class="glow w-full py-4 rounded-xl">
+Apply
+</button>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 px-6 text-center bg-gray-950 fade">
+<h2 class="text-5xl font-bold mb-12">Let’s Rebuild Your Revenue DNA</h2>
+<button onclick="openModal()" class="glow px-10 py-6 rounded-2xl text-lg font-semibold">
+Start Now
+</button>
+</section>
+
+<footer class="py-10 text-center text-gray-600 text-sm border-t border-gray-800">
+© 2026 DNA Agency — Different. Not Average.
+</footer>
+
+<!-- MODAL -->
+<div id="modal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center">
+<div class="glass p-10 rounded-3xl max-w-lg w-full text-center">
+<h3 class="text-3xl font-bold mb-6">Book Strategy Call</h3>
+<input placeholder="Full Name" class="w-full p-4 mb-4 bg-black border border-gray-700 rounded-xl">
+<input placeholder="Phone" class="w-full p-4 mb-4 bg-black border border-gray-700 rounded-xl">
+<input placeholder="Email" class="w-full p-4 mb-6 bg-black border border-gray-700 rounded-xl">
+<button class="glow w-full py-4 rounded-xl">Request Call</button>
+<br><br>
+<button onclick="closeModal()" class="text-gray-400">Close</button>
+</div>
+</div>
+
+<script>
+// Revenue counter
+let revenue = 1847326;
+setInterval(()=>{
+revenue+=Math.floor(Math.random()*900);
+document.getElementById("revenue").innerText=revenue.toLocaleString();
+},2000);
+
+// Calls counter
+let calls=91;
+setInterval(()=>{
+calls+=Math.floor(Math.random()*4);
+document.getElementById("calls").innerText=calls;
+},5000);
+
+// Testimonial rotator
+const testimonials=[
+"Recovered 33 lost consultations and signed 11 retainers. ★★★★★",
+"Increased bookings by 56% in 60 days. ★★★★★",
+"Doubled inbound capture rate in 45 days. ★★★★★"
+];
+let i=0;
+setInterval(()=>{
+i=(i+1)%testimonials.length;
+document.getElementById("testimonial").innerText=testimonials[i];
+},4000);
+
+// Pricing toggle
+let annual=false;
+function togglePricing(){
+annual=!annual;
+document.getElementById("silverPrice").innerText=annual?"$9,570/yr":"$997/mo";
+document.getElementById("goldPrice").innerText=annual?"$19,170/yr":"$1,997/mo";
+document.getElementById("platinumPrice").innerText=annual?"$33,570/yr":"$3,497/mo";
+}
+
+// Modal
+function openModal(){document.getElementById("modal").classList.remove("hidden");}
+function closeModal(){document.getElementById("modal").classList.add("hidden");}
+
+// Countdown
+let time=899;
+setInterval(()=>{
+let m=Math.floor(time/60);
+let s=time%60;
+document.getElementById("timer").innerText=
+m+":"+(s<10?"0"+s:s);
+if(time>0)time--;
+},1000);
+
+// Scroll fade
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting)e.target.classList.add("show");
+});
+});
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+
+// Particle background
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2});
+}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#7c3aed";
+ctx.fill();
+p.y+=0.3;
+if(p.y>canvas.height)p.y=0;
+});
+requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>
