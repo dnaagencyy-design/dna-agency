@@ -32,7 +32,7 @@ e.preventDefault();
 
 const data = new FormData(form);
 
-const response = await fetch("https://formspree.io/f/https://formspree.io/f/mpqjojqa", {
+const response = await fetch("https://formspree.io/f/mpqjojqa", {
 method: "POST",
 body: data,
 headers: { 'Accept': 'application/json' }
