@@ -1,354 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Company Name</title>
-<meta name="description" content="Predictable Commercial Contract Systems powered by advanced automation and AI.">
-
-<!-- Premium Font -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Agency Name</title>
+<meta name="description" content="We help local businesses generate more booked jobs every month." />
+<link rel="stylesheet" href="style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-<style>
-:root{
---primary:#3b82f6;
---dark:#0a0f1c;
---glass:rgba(255,255,255,0.06);
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:var(--dark);
-color:white;
-overflow-x:hidden;
-}
-
-/* ===== Animated Gradient Background ===== */
-.background{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-3;
-background:linear-gradient(-45deg,#0a0f1c,#0f172a,#111827,#0b1220);
-background-size:400% 400%;
-animation:gradient 18s ease infinite;
-}
-
-@keyframes gradient{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
-
-/* ===== Navbar ===== */
-nav{
-position:fixed;
-width:100%;
-padding:18px 50px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-backdrop-filter:blur(20px);
-background:rgba(0,0,0,0.4);
-z-index:1000;
-}
-
-nav h1{
-font-weight:800;
-font-size:18px;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:25px;
-font-size:14px;
-opacity:0.8;
-}
-
-nav a:hover{opacity:1}
-
-/* ===== Hero ===== */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-}
-
-.hero h2{
-font-size:3.5rem;
-font-weight:800;
-margin-bottom:20px;
-}
-
-.hero p{
-max-width:750px;
-opacity:0.8;
-margin-bottom:35px;
-font-weight:300;
-}
-
-/* ===== Buttons ===== */
-.btn{
-padding:15px 32px;
-border-radius:40px;
-border:none;
-cursor:pointer;
-margin:10px;
-font-weight:600;
-transition:0.3s ease;
-}
-
-.btn-primary{
-background:var(--primary);
-color:white;
-}
-
-.btn-primary:hover{
-transform:translateY(-4px);
-box-shadow:0 15px 30px rgba(59,130,246,0.5);
-}
-
-.btn-outline{
-background:transparent;
-border:2px solid white;
-color:white;
-}
-
-.btn-outline:hover{
-background:white;
-color:black;
-}
-
-/* ===== Sections ===== */
-section{
-padding:140px 20px;
-max-width:1100px;
-margin:auto;
-text-align:center;
-}
-
-section h3{
-font-size:2.3rem;
-margin-bottom:25px;
-font-weight:800;
-}
-
-.card{
-background:var(--glass);
-padding:40px;
-border-radius:25px;
-backdrop-filter:blur(25px);
-margin-top:30px;
-line-height:1.8;
-}
-
-/* ===== 3D Container ===== */
-#dnaContainer{
-position:absolute;
-top:0;
-right:0;
-width:100%;
-height:100%;
-z-index:-2;
-}
-
-/* ===== Modal ===== */
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.75);
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-
-.modal-content{
-background:#111827;
-padding:50px;
-border-radius:25px;
-width:90%;
-max-width:500px;
-}
-
-input,textarea{
-width:100%;
-padding:14px;
-margin-top:12px;
-border-radius:12px;
-border:none;
-}
-
-/* ===== Toast ===== */
-.toast{
-position:fixed;
-bottom:25px;
-right:25px;
-background:var(--primary);
-padding:16px 28px;
-border-radius:12px;
-display:none;
-z-index:3000;
-}
-
-/* ===== Scroll Animation ===== */
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:all 0.8s ease;
-}
-
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
-
-@media(max-width:768px){
-.hero h2{font-size:2.2rem;}
-}
-</style>
 </head>
-
 <body>
 
-<div class="background"></div>
-<div id="dnaContainer"></div>
+<header>
+<div class="logo">YOUR AGENCY</div>
+<a href="#contact" class="cta-btn">Book a Call</a>
+</header>
 
-<!-- NAV -->
-<nav>
-<h1>Your Company</h1>
-<div>
-<a href="#about">About</a>
-<a href="#system">System</a>
-<a href="#contact">Contact</a>
-</div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-<h2>Predictable Commercial Growth Systems</h2>
-<p>
-Advanced AI-driven acquisition infrastructure designed for commercial roofing companies that want stability, scalability, and consistent pipeline growth.
-</p>
-
-<button class="btn btn-primary" onclick="openModal()">Book a Strategy Call</button>
-<button class="btn btn-outline" onclick="document.getElementById('system').scrollIntoView()">View System</button>
-</div>
-
-<!-- ABOUT -->
-<section id="about" class="fade">
-<h3>What We Deliver</h3>
-<div class="card">
-Commercial outreach automation<br>
-AI receptionist & 24/7 lead capture<br>
-Missed-call recovery systems<br>
-Property manager targeting infrastructure<br>
-Pipeline optimization frameworks<br>
+<section class="hero">
+<video autoplay muted loop class="bg-video">
+<source src="your-video.mp4" type="video/mp4">
+</video>
+<div class="hero-content">
+<h1>We Help Contractors<br><span>Book More High-Ticket Jobs</span></h1>
+<p>Predictable revenue systems. More projects. Less guesswork.</p>
+<a href="#contact" class="primary-btn">Get More Jobs</a>
 </div>
 </section>
 
-<!-- SYSTEM -->
-<section id="system" class="fade">
-<h3>How It Works</h3>
-<div class="card">
-Step 1 — Install acquisition infrastructure<br><br>
-Step 2 — Activate commercial targeting systems<br><br>
-Step 3 — Generate predictable meetings & opportunities
+<section class="services reveal">
+<h2>What We Do</h2>
+<div class="cards">
+<div class="card">Lead Generation</div>
+<div class="card">Follow-Up Automation</div>
+<div class="card">Revenue Optimization</div>
 </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="fade">
-<h3>Contact</h3>
-<div class="card">
-<form onsubmit="submitForm(event)">
-<input type="text" placeholder="Name" required>
-<input type="email" placeholder="Email" required>
-<textarea rows="4" placeholder="Message"></textarea>
-<button class="btn btn-primary" type="submit">Send</button>
+<section class="video-section reveal">
+<h2>See How It Works</h2>
+<div class="video-wrapper">
+<iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+frameborder="0" allowfullscreen></iframe>
+</div>
+</section>
+
+<section class="contact reveal" id="contact">
+<h2>Let's Grow Your Business</h2>
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="email" name="email" placeholder="Email Address" required>
+<input type="text" name="company" placeholder="Company Name">
+<textarea name="message" placeholder="Tell us about your goals"></textarea>
+<button type="submit">Submit</button>
 </form>
-</div>
 </section>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content">
-<h3>Book Your Call</h3>
-<p>Insert your Calendly link here.</p>
-<br>
-<button class="btn btn-primary" onclick="closeModal()">Close</button>
-</div>
-</div>
+<footer>
+<p>© 2026 Your Agency. All rights reserved.</p>
+</footer>
 
-<div class="toast" id="toast">Message Sent</div>
-
-<!-- THREE.JS FOR REAL 3D DNA -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-<script>
-/* ===== Scroll Reveal ===== */
-const faders=document.querySelectorAll('.fade');
-const appear=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('show');
-}
-});
-});
-faders.forEach(f=>appear.observe(f));
-
-/* ===== Modal ===== */
-function openModal(){document.getElementById('modal').style.display='flex';}
-function closeModal(){document.getElementById('modal').style.display='none';}
-
-/* ===== Toast ===== */
-function submitForm(e){
-e.preventDefault();
-const toast=document.getElementById('toast');
-toast.style.display='block';
-setTimeout(()=>toast.style.display='none',3000);
-}
-
-/* ===== 3D DNA ===== */
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-document.getElementById("dnaContainer").appendChild(renderer.domElement);
-
-const geometry=new THREE.CylinderGeometry(0.5,0.5,15,32);
-const material=new THREE.MeshBasicMaterial({color:0x3b82f6});
-const dna=new THREE.Mesh(geometry,material);
-scene.add(dna);
-
-camera.position.z=20;
-
-function animate(){
-requestAnimationFrame(animate);
-dna.rotation.y+=0.01;
-dna.rotation.x+=0.005;
-renderer.render(scene,camera);
-}
-animate();
-
-window.addEventListener('resize',()=>{
-camera.aspect=window.innerWidth/window.innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize(window.innerWidth,window.innerHeight);
-});
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
