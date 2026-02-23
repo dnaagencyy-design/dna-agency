@@ -1,15 +1,25 @@
-// Scroll Reveal Animation
-const reveals = document.querySelectorAll('.reveal');
+// Header shrink on scroll
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+if (window.scrollY > 50) {
+header.classList.add("scrolled");
+} else {
+header.classList.remove("scrolled");
+}
+});
+
+
+// Scroll Reveal
+const reveals = document.querySelectorAll(".reveal");
 
 const observer = new IntersectionObserver((entries) => {
 entries.forEach(entry => {
 if (entry.isIntersecting) {
-entry.target.classList.add('active');
+entry.target.classList.add("active");
 }
 });
-}, {
-threshold: 0.1
-});
+}, { threshold: 0.15 });
 
 reveals.forEach(el => observer.observe(el));
 
@@ -17,7 +27,6 @@ reveals.forEach(el => observer.observe(el));
 // Contact Form
 const form = document.getElementById("contact-form");
 
-if (form) {
 form.addEventListener("submit", async function(e) {
 e.preventDefault();
 
@@ -34,4 +43,3 @@ form.reset();
 document.getElementById("success-message").style.display = "block";
 }
 });
-}
