@@ -3,268 +3,351 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DNA Agency | Different. Not Average.</title>
+<title>Your Company Name</title>
+<meta name="description" content="Predictable Commercial Contract Systems powered by advanced automation and AI.">
 
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- Premium Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body {
-  background: radial-gradient(circle at top, #111 0%, #000 60%);
-  scroll-behavior: smooth;
+:root{
+--primary:#3b82f6;
+--dark:#0a0f1c;
+--glass:rgba(255,255,255,0.06);
 }
 
-.glass {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(255,255,255,0.1);
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+scroll-behavior:smooth;
 }
 
-.glow {
-  background: linear-gradient(90deg,#7c3aed,#9333ea);
-  box-shadow: 0 0 25px rgba(147,51,234,.7);
-  transition: .3s;
-}
-.glow:hover {
-  box-shadow: 0 0 50px rgba(147,51,234,1);
-  transform: translateY(-4px);
+body{
+background:var(--dark);
+color:white;
+overflow-x:hidden;
 }
 
-.fade {
-  opacity:0;
-  transform:translateY(40px);
-  transition:all 1s ease;
-}
-.fade.show {
-  opacity:1;
-  transform:translateY(0);
+/* ===== Animated Gradient Background ===== */
+.background{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-3;
+background:linear-gradient(-45deg,#0a0f1c,#0f172a,#111827,#0b1220);
+background-size:400% 400%;
+animation:gradient 18s ease infinite;
 }
 
-#particles {
-  position:fixed;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  z-index:-1;
+@keyframes gradient{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* ===== Navbar ===== */
+nav{
+position:fixed;
+width:100%;
+padding:18px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.4);
+z-index:1000;
+}
+
+nav h1{
+font-weight:800;
+font-size:18px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-size:14px;
+opacity:0.8;
+}
+
+nav a:hover{opacity:1}
+
+/* ===== Hero ===== */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h2{
+font-size:3.5rem;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:750px;
+opacity:0.8;
+margin-bottom:35px;
+font-weight:300;
+}
+
+/* ===== Buttons ===== */
+.btn{
+padding:15px 32px;
+border-radius:40px;
+border:none;
+cursor:pointer;
+margin:10px;
+font-weight:600;
+transition:0.3s ease;
+}
+
+.btn-primary{
+background:var(--primary);
+color:white;
+}
+
+.btn-primary:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 30px rgba(59,130,246,0.5);
+}
+
+.btn-outline{
+background:transparent;
+border:2px solid white;
+color:white;
+}
+
+.btn-outline:hover{
+background:white;
+color:black;
+}
+
+/* ===== Sections ===== */
+section{
+padding:140px 20px;
+max-width:1100px;
+margin:auto;
+text-align:center;
+}
+
+section h3{
+font-size:2.3rem;
+margin-bottom:25px;
+font-weight:800;
+}
+
+.card{
+background:var(--glass);
+padding:40px;
+border-radius:25px;
+backdrop-filter:blur(25px);
+margin-top:30px;
+line-height:1.8;
+}
+
+/* ===== 3D Container ===== */
+#dnaContainer{
+position:absolute;
+top:0;
+right:0;
+width:100%;
+height:100%;
+z-index:-2;
+}
+
+/* ===== Modal ===== */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.75);
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.modal-content{
+background:#111827;
+padding:50px;
+border-radius:25px;
+width:90%;
+max-width:500px;
+}
+
+input,textarea{
+width:100%;
+padding:14px;
+margin-top:12px;
+border-radius:12px;
+border:none;
+}
+
+/* ===== Toast ===== */
+.toast{
+position:fixed;
+bottom:25px;
+right:25px;
+background:var(--primary);
+padding:16px 28px;
+border-radius:12px;
+display:none;
+z-index:3000;
+}
+
+/* ===== Scroll Animation ===== */
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:768px){
+.hero h2{font-size:2.2rem;}
 }
 </style>
 </head>
 
-<body class="text-white font-sans overflow-x-hidden">
+<body>
 
-<canvas id="particles"></canvas>
+<div class="background"></div>
+<div id="dnaContainer"></div>
 
 <!-- NAV -->
-<nav class="fixed w-full bg-black/70 backdrop-blur-lg border-b border-gray-800 z-50">
-<div class="max-w-7xl mx-auto flex justify-between items-center p-6">
-<div class="text-2xl font-bold text-purple-400">DNA Agency</div>
-<div class="hidden md:flex gap-10 text-gray-300">
-<a href="#results">Results</a>
-<a href="#pricing">Packages</a>
+<nav>
+<h1>Your Company</h1>
+<div>
+<a href="#about">About</a>
+<a href="#system">System</a>
 <a href="#contact">Contact</a>
-</div>
-<button onclick="openModal()" class="glow px-6 py-3 rounded-xl font-semibold">
-Book Call
-</button>
 </div>
 </nav>
 
-<div class="h-24"></div>
-
 <!-- HERO -->
-<section class="text-center py-32 px-6 fade">
-<h1 class="text-6xl md:text-8xl font-bold">DNA Agency</h1>
-<p class="text-2xl mt-6 text-purple-400 font-semibold">
-Different. Not Average.
+<div class="hero">
+<h2>Predictable Commercial Growth Systems</h2>
+<p>
+Advanced AI-driven acquisition infrastructure designed for commercial roofing companies that want stability, scalability, and consistent pipeline growth.
 </p>
 
-<p class="mt-12 text-2xl max-w-3xl mx-auto font-semibold">
-We engineer AI communication systems that capture 100% of your inbound opportunities.
-</p>
-
-<div class="mt-8 text-yellow-400 text-xl">
-★★★★★ <span class="text-white ml-3">4.8 Overall Rating</span>
+<button class="btn btn-primary" onclick="openModal()">Book a Strategy Call</button>
+<button class="btn btn-outline" onclick="document.getElementById('system').scrollIntoView()">View System</button>
 </div>
 
-<div class="mt-10 text-green-400 text-xl font-semibold">
-Client Revenue Generated: $<span id="revenue">1,847,326</span>+
-</div>
-
-<div class="mt-4 text-blue-400 text-lg">
-Live Calls Captured Today: <span id="calls">91</span>
-</div>
-
-<div class="mt-12">
-<button onclick="openModal()" class="glow px-10 py-5 rounded-2xl text-xl font-semibold">
-Get My Growth Plan
-</button>
-</div>
-
-<div class="mt-6 text-red-400">
-Limited onboarding slots left this month:
-<span id="timer">14:59</span>
+<!-- ABOUT -->
+<section id="about" class="fade">
+<h3>What We Deliver</h3>
+<div class="card">
+Commercial outreach automation<br>
+AI receptionist & 24/7 lead capture<br>
+Missed-call recovery systems<br>
+Property manager targeting infrastructure<br>
+Pipeline optimization frameworks<br>
 </div>
 </section>
 
-<!-- SOCIAL PROOF BAR -->
-<section class="py-10 text-center text-gray-400 border-y border-gray-800">
-Trusted by 268 businesses across the USA & Canada
-</section>
-
-<!-- RESULTS -->
-<section id="results" class="py-24 px-6 text-center bg-gray-950 fade">
-<h2 class="text-5xl font-bold mb-16">Client Wins</h2>
-<div id="testimonial" class="glass p-10 rounded-3xl max-w-3xl mx-auto text-xl">
-Captured 41 missed calls per month and generated $38,000 in new jobs. ★★★★★
-</div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing" class="py-24 px-6 text-center fade">
-<h2 class="text-5xl font-bold mb-12">Outcome Packages</h2>
-
-<div class="mb-10">
-<button onclick="togglePricing()" class="glass px-6 py-3 rounded-xl">
-Toggle Monthly / Annual (Save 20%)
-</button>
-</div>
-
-<div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-
-<div class="glass p-10 rounded-3xl">
-<h3 class="text-3xl font-bold mb-4">Silver</h3>
-<p id="silverPrice" class="text-purple-400 text-xl mb-6">$997/mo</p>
-<button onclick="openModal()" class="glow w-full py-4 rounded-xl">
-Apply
-</button>
-</div>
-
-<div class="glass p-10 rounded-3xl">
-<h3 class="text-3xl font-bold mb-4">Gold</h3>
-<p id="goldPrice" class="text-purple-400 text-xl mb-6">$1,997/mo</p>
-<button onclick="openModal()" class="glow w-full py-4 rounded-xl">
-Apply
-</button>
-</div>
-
-<div class="glass p-10 rounded-3xl">
-<h3 class="text-3xl font-bold mb-4">Platinum</h3>
-<p id="platinumPrice" class="text-purple-400 text-xl mb-6">$3,497/mo</p>
-<button onclick="openModal()" class="glow w-full py-4 rounded-xl">
-Apply
-</button>
-</div>
-
+<!-- SYSTEM -->
+<section id="system" class="fade">
+<h3>How It Works</h3>
+<div class="card">
+Step 1 — Install acquisition infrastructure<br><br>
+Step 2 — Activate commercial targeting systems<br><br>
+Step 3 — Generate predictable meetings & opportunities
 </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="py-24 px-6 text-center bg-gray-950 fade">
-<h2 class="text-5xl font-bold mb-12">Let’s Rebuild Your Revenue DNA</h2>
-<button onclick="openModal()" class="glow px-10 py-6 rounded-2xl text-lg font-semibold">
-Start Now
-</button>
+<section id="contact" class="fade">
+<h3>Contact</h3>
+<div class="card">
+<form onsubmit="submitForm(event)">
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea rows="4" placeholder="Message"></textarea>
+<button class="btn btn-primary" type="submit">Send</button>
+</form>
+</div>
 </section>
 
-<footer class="py-10 text-center text-gray-600 text-sm border-t border-gray-800">
-© 2026 DNA Agency — Different. Not Average.
-</footer>
-
 <!-- MODAL -->
-<div id="modal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center">
-<div class="glass p-10 rounded-3xl max-w-lg w-full text-center">
-<h3 class="text-3xl font-bold mb-6">Book Strategy Call</h3>
-<input placeholder="Full Name" class="w-full p-4 mb-4 bg-black border border-gray-700 rounded-xl">
-<input placeholder="Phone" class="w-full p-4 mb-4 bg-black border border-gray-700 rounded-xl">
-<input placeholder="Email" class="w-full p-4 mb-6 bg-black border border-gray-700 rounded-xl">
-<button class="glow w-full py-4 rounded-xl">Request Call</button>
-<br><br>
-<button onclick="closeModal()" class="text-gray-400">Close</button>
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3>Book Your Call</h3>
+<p>Insert your Calendly link here.</p>
+<br>
+<button class="btn btn-primary" onclick="closeModal()">Close</button>
 </div>
 </div>
+
+<div class="toast" id="toast">Message Sent</div>
+
+<!-- THREE.JS FOR REAL 3D DNA -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
-// Revenue counter
-let revenue = 1847326;
-setInterval(()=>{
-revenue+=Math.floor(Math.random()*900);
-document.getElementById("revenue").innerText=revenue.toLocaleString();
-},2000);
-
-// Calls counter
-let calls=91;
-setInterval(()=>{
-calls+=Math.floor(Math.random()*4);
-document.getElementById("calls").innerText=calls;
-},5000);
-
-// Testimonial rotator
-const testimonials=[
-"Recovered 33 lost consultations and signed 11 retainers. ★★★★★",
-"Increased bookings by 56% in 60 days. ★★★★★",
-"Doubled inbound capture rate in 45 days. ★★★★★"
-];
-let i=0;
-setInterval(()=>{
-i=(i+1)%testimonials.length;
-document.getElementById("testimonial").innerText=testimonials[i];
-},4000);
-
-// Pricing toggle
-let annual=false;
-function togglePricing(){
-annual=!annual;
-document.getElementById("silverPrice").innerText=annual?"$9,570/yr":"$997/mo";
-document.getElementById("goldPrice").innerText=annual?"$19,170/yr":"$1,997/mo";
-document.getElementById("platinumPrice").innerText=annual?"$33,570/yr":"$3,497/mo";
+/* ===== Scroll Reveal ===== */
+const faders=document.querySelectorAll('.fade');
+const appear=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
 }
-
-// Modal
-function openModal(){document.getElementById("modal").classList.remove("hidden");}
-function closeModal(){document.getElementById("modal").classList.add("hidden");}
-
-// Countdown
-let time=899;
-setInterval(()=>{
-let m=Math.floor(time/60);
-let s=time%60;
-document.getElementById("timer").innerText=
-m+":"+(s<10?"0"+s:s);
-if(time>0)time--;
-},1000);
-
-// Scroll fade
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-if(e.isIntersecting)e.target.classList.add("show");
 });
 });
-document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+faders.forEach(f=>appear.observe(f));
 
-// Particle background
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-let particles=[];
-for(let i=0;i<80;i++){
-particles.push({x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2});
+/* ===== Modal ===== */
+function openModal(){document.getElementById('modal').style.display='flex';}
+function closeModal(){document.getElementById('modal').style.display='none';}
+
+/* ===== Toast ===== */
+function submitForm(e){
+e.preventDefault();
+const toast=document.getElementById('toast');
+toast.style.display='block';
+setTimeout(()=>toast.style.display='none',3000);
 }
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="#7c3aed";
-ctx.fill();
-p.y+=0.3;
-if(p.y>canvas.height)p.y=0;
+
+/* ===== 3D DNA ===== */
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+const renderer=new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+document.getElementById("dnaContainer").appendChild(renderer.domElement);
+
+const geometry=new THREE.CylinderGeometry(0.5,0.5,15,32);
+const material=new THREE.MeshBasicMaterial({color:0x3b82f6});
+const dna=new THREE.Mesh(geometry,material);
+scene.add(dna);
+
+camera.position.z=20;
+
+function animate(){
+requestAnimationFrame(animate);
+dna.rotation.y+=0.01;
+dna.rotation.x+=0.005;
+renderer.render(scene,camera);
+}
+animate();
+
+window.addEventListener('resize',()=>{
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
 });
-requestAnimationFrame(draw);
-}
-draw();
 </script>
 
 </body>
